@@ -1,6 +1,5 @@
 # UNDER CONSTRUCTION
-
-# First Learn tO Walk (FLOW)
+# First Learn tO Walk (FLOW) ![flow_logo](https://github.com/user-attachments/assets/18df64de-6f91-4836-b0af-e913002029f6) 
 
 The main goal of this project is to do a state estimation in the Budyko Sellers 1D energy balance model to understand the different aspects of the estimation. We build on the [Budyko Sellers model](https://github.com/Shreyas911/ESS25_AD) by Sheryas Gaikwad and Ian Fenty.
 
