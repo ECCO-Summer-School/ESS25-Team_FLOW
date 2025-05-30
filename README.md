@@ -1,15 +1,19 @@
 # UNDER CONSTRUCTION
 # First Learn tO Walk (FLOW) ![flow_logo](https://github.com/user-attachments/assets/18df64de-6f91-4836-b0af-e913002029f6) 
 
-The main goal of this project is to do a state estimation in the Budyko Sellers 1D energy balance model to understand the different aspects of the estimation. We build on the [Budyko Sellers model](https://github.com/Shreyas911/ESS25_AD) by Sheryas Gaikwad and Ian Fenty.
+Using a simple climate model and its AD-generated adjoint, can we perform a state estimation and recover realistic control parameters?
+
+The main goal of this project is to use the Budyko Sellers 1D energy balance model and its adjoint to understand the different aspects of state estimation. We developed two tutorial notebooks exloring the implementation and performance of three gradient descent algorithms and how the number and scaling of controls affects the final estimation.
+
+We build on the [Budyko Sellers model](https://github.com/Shreyas911/ESS25_AD) provided by Sheryas Gaikwad and Ian Fenty in Fortran.
 
 ### Collaborators
 
 | Name | Personal goals | Can help with | Role |
 | ------------- | ------------- | ------------- | ------------- |
 | Noah Rosenberg | I want to learn specific python libraries for working with these data  | I can help with understanding our dataset, programming in R  | Project Lead |
-| Karina Ramos Musalem | Practice leading a software project | machine learning and python (scipy, scikit-learn) | Project Lead |
-| Shreyas Gaikwad| Practice leading a software project | ...  | Project collaborator |
+| Karina Ramos Musalem | I want to understand the optimization process and different components that go into a state estimate calculation | Programmming in python, understanding the model| Project Lead |
+| Shreyas Gaikwad| ...| ...  | Project collaborator |
 | Ian Fenty | ... | ... | ... |
 
 ### The problem
@@ -18,9 +22,10 @@ Provide a few sentences describing the problem are you going to explore. If this
 
 ## Data and Methods
 
+
 ### Data
 
-NCEP surface temperature. 
+NCEP reanalysis surface temperature. 
 
 ### Existing methods
 
@@ -34,7 +39,6 @@ Will your project use machine learning methods? If so, we invite you to create a
 
 ### Additional resources or background reading
 
-Optional: links to manuscripts or technical documents providing background information, context, or other relevant information.
 The Budyko-Sellers model is based on the notebook ["Lecture 14: The one-dimensional energy balance model"](https://www.atmos.albany.edu/facstaff/brose/classes/ATM623_Spring2015/Notes/Lectures/Lecture14%20--%20Diffusive%20energy%20balance%20model.html) by Brian E. J. Rose at University at Albany.
 
 ## Project goals and tasks
@@ -59,6 +63,9 @@ What are the individual tasks or steps that need to be taken to achieve each of 
 * ...
 
 ## Project Results
+
+We developed two tutorials:
+
 
 Use this section to briefly summarize your project results. This could take the form of describing the progress your team made to answering a research question, developing a tool or tutorial, interesting things found in exploring a new dataset, lessons learned for applying a new method, personal accomplishments of each team member, or anything else the team wants to share.
 
