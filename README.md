@@ -1,72 +1,87 @@
-# UNDER CONSTRUCTION
 # First Learn tO Walk (FLOW) ![flow_logo](https://github.com/user-attachments/assets/18df64de-6f91-4836-b0af-e913002029f6) 
 
-Using a simple climate model and its AD-generated adjoint, can we perform a state estimation and recover realistic control parameters?
+## Project Overview
 
-The main goal of this project is to use the Budyko Sellers 1D energy balance model and its adjoint to understand the different aspects of state estimation. We developed two tutorial notebooks exloring the implementation and performance of three gradient descent algorithms and how the number and scaling of controls affects the final estimation.
+This project explores state estimation in climate systems using the Budyko-Sellers one-dimensional energy balance model (EBM) and its adjoint, generated through automatic differentiation (AD). Our main goal is to recover realistic control parameters (e.g., albedo, diffusivity) from noisy data, leveraging gradient-based optimization methods.
 
-We build on the [Budyko Sellers model](https://github.com/Shreyas911/ESS25_AD) provided by Sheryas Gaikwad and Ian Fenty in Fortran.
+We build on the [Budyko Sellers model](https://github.com/Shreyas911/ESS25_AD) provided by Shreyas Gaikwad and Ian Fenty in Fortran, and have developed two tutorial notebooks that explore the implementation and performance of three gradient descent algorithms. We pay particular attention to how the number and scaling of control parameters affect the final state estimate.
 
-### Collaborators
+---
 
-| Name | Personal goals | Can help with | Role |
-| ------------- | ------------- | ------------- | ------------- |
-| Noah Rosenberg | I want to learn specific python libraries for working with these data  | I can help with understanding our dataset, programming in R  | Project Lead |
-| Karina Ramos Musalem | I want to understand the optimization process and different components that go into a state estimate calculation | Programmming in python, understanding the model| Project Lead |
-| Shreyas Gaikwad| ...| ...  | Project collaborator |
-| Ian Fenty | ... | ... | ... |
+## Budyko-Sellers Model Equations
 
-### The problem
+The Budyko-Sellers model is a 1D energy balance model (EBM) for Earth's climate, describing the evolution of zonal mean surface temperature ($T(\phi)$) as a function of latitude ($\phi$):
 
-Provide a few sentences describing the problem are you going to explore. If this is a technical exploration of software or data science methods, explain why this work is important in a broader context and specific applications of this work.
+$$
+ \frac{\partial E(\phi,t)}{\partial t} = Q(1-\alpha) - \epsilon \sigma T^4 + \frac{D}{\cos{\phi}} \frac{\partial}{\partial\phi}(\cos{\phi}\frac{\partial T}{\partial \phi}),
+$$
+
+where:
+- $ Q(\phi) $: Incoming solar radiation (insolation)
+- $\alpha(\phi) $: Albedo, a function of latitude
+- $\sigma$: Stefan-Boltzmann constant
+- $\epsilon$: emissivity
+- $D$: Diffusion coefficient (meridional heat transport)
+
+Our forward model numerically solves these equations to simulate equilibrium temperature profiles given a set of physical parameters. The adjoint model allows us to compute gradients with respect to control parameters, enabling efficient optimization and state estimation.
+
+---
+
+## Collaborators
+
+| Name                   | Personal goals                                                                  | Can help with                                        | Role                |
+|------------------------|--------------------------------------------------------------------------------|------------------------------------------------------|---------------------|
+| Noah Rosenberg         |  I want to learn specific python libraries for working with these data         | Understanding our dataset, programming in R          | Project Lead        |
+| Karina Ramos Musalem   | I want to understand the optimization process and different components that go into a state estimate calculation | Programming in Python, understanding the model  | Project Lead        |
+| Shreyas Gaikwad        |                               |            | Project collaborator|
+| Ian Fenty              |                                         |                       | Project collaborator|
+
+---
 
 ## Data and Methods
 
-
 ### Data
 
-NCEP reanalysis surface temperature. 
+Our primary dataset is the NCEP reanalysis zonal mean surface temperature, providing realistic climate targets for state estimation experiments.
 
-### Existing methods
+### Existing Methods
 
-How would you or others traditionally try to address this problem? Provide any relevant citations to prior work.
+Traditionally, parameter estimation in EBMs relies on manual tuning or simple statistical approaches. Adjoint-based methods, while common in large-scale models, are less frequently applied to simple climate models but offer both opportunities to learn and illustrate these methods and useful gradient information for optimization.
 
-### Proposed methods/tools
+### Proposed Methods/Tools
 
-What new approaches would you like to implement for addressing your specific question(s) or application(s)?
+We implement an adjoint-based optimization using three gradient descent methods in python. The project also explores sensitivity to the number and type of control parameters, and the effect of control scaling. 
 
-Will your project use machine learning methods? If so, we invite you to create a [model card](model-card.md)!
+### Additional Resources or Background Reading
 
-### Additional resources or background reading
+- ["Lecture 14: The one-dimensional energy balance model"](https://www.atmos.albany.edu/facstaff/brose/classes/ATM623_Spring2015/Notes/Lectures/Lecture14%20--%20Diffusive%20energy%20balance%20model.html) by Brian E. J. Rose (University at Albany)
+- [Original Budyko-Sellers model repository](https://github.com/Shreyas911/ESS25_AD)
 
-The Budyko-Sellers model is based on the notebook ["Lecture 14: The one-dimensional energy balance model"](https://www.atmos.albany.edu/facstaff/brose/classes/ATM623_Spring2015/Notes/Lectures/Lecture14%20--%20Diffusive%20energy%20balance%20model.html) by Brian E. J. Rose at University at Albany.
+---
 
-## Project goals and tasks
+## Project Goals and Tasks
 
-### Project goals
+### Project Goals
 
-List the specific project goals or research questions you want to answer. Think about what outcomes or deliverables you'd like to create (e.g. a series of tutorial notebooks demonstrating how to work with a dataset, results of an anaysis to answer a science question, an example of applying a new analysis method, or a new python package).
-
-* Goal 1
-* Goal 2
-* ...
+* Demonstrate adjoint-based state estimation with a 1D EBM.
+* Evaluate gradient descent methods for parameter recovery.
+* Assess effects of control parameter choices and scaling.
+* Create reproducible tutorial notebooks for other students.
 
 ### Tasks
 
-What are the individual tasks or steps that need to be taken to achieve each of the project goals identified above? What are the skills that participants will need or will learn and practice to complete each of these tasks? Think about which tasks are dependent on prior tasks, or which tasks can be performed in parallel.
+* Model experiments: Implement and test gradient descent algorithms in tutorial notebooks
+  * Task 2a: Parameter tuning in Python (assigned to Karina)
+  * Task 2b: Implementation of gradient descent methods (assigned to Noah)
+* Documentation: Write up results, methods, and lessons learned
 
-* Task 1 (all team members will learn to use GitHub)
-* Task 2 (team members will use the scikit-learn python library)
-  * Task 2a (assigned to team member A)
-  * Task 2b (assigned to team member B)
-* Task 3
-* ...
+---
 
 ## Project Results
 
-We developed two tutorials:
+We developed two tutorial notebooks:
 
+1. **Gradient Descent Optimization** – Demonstrates parameter recovery with different algorithms and control settings.
+2. **Sensitivity Analysis** – Explores the impact of control parameter scaling and selection.
 
-Use this section to briefly summarize your project results. This could take the form of describing the progress your team made to answering a research question, developing a tool or tutorial, interesting things found in exploring a new dataset, lessons learned for applying a new method, personal accomplishments of each team member, or anything else the team wants to share.
-
-You could include figures or images here, links to notebooks or code elsewhere in the repository (such as in the [notebooks](notebooks/) folder), and information on how others can run your notebooks or code.
+These resources are available in the [notebooks](notebooks/) folder. Our results show that adjoint-based optimization can recover key climate parameters, but the outcome is very sensitive to the choice and scaling of controls.
